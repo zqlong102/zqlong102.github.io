@@ -8,13 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>青龙堂</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="柱状图                   .boes {}          .sexbox {             width: 300px;             height: 20px;             border: 1px solid black;             display: flex;">
+<meta property="og:type" content="website">
 <meta property="og:title" content="青龙堂">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/html/zhuzhuangtu.html">
 <meta property="og:site_name" content="青龙堂">
+<meta property="og:description" content="柱状图                   .boes {}          .sexbox {             width: 300px;             height: 20px;             border: 1px solid black;             display: flex;">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-24T07:38:04.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="青龙堂">
+<meta name="twitter:description" content="柱状图                   .boes {}          .sexbox {             width: 300px;             height: 20px;             border: 1px solid black;             display: flex;">
   
     <link rel="alternative" href="/atom.xml" title="青龙堂" type="application/atom+xml">
   
@@ -154,97 +158,248 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/12/02/2/">数据类型</a>
-    </h1>
-  
-
-        
-        <a href="/2014/12/02/2/" class="archive-article-date">
-  	<time datetime="2014-12-02T07:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-12-02</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>数据类型： 1.简单类型</p>
-<pre><code>数字类型（number）：无论是数字还是小数，都为数字类型
-特殊值：NAN（Not A Number），表示非数字
-出现情况：当数字与其他类型运算时    
-例如：var a = 1 * ab;    //运算结果就为NaN
-</code></pre><ol>
-<li>任何涉及NAN的操作，结果都为NAN<br> 例如：var = 1 + NaN;    //运算结果为NaN</li>
-<li>NAN与任何值都不相等，包括自己<br> 例如：console.log(NaN == NaN)    //运算结果为false(布尔值)</li>
-</ol>
-<p>字符串类型（string）：</p>
-<pre><code>引号内的数据， 不区分大小分，在字符串里不得同时使用双引号嵌套
-例如：let str = &quot;&quot;1&quot;&quot;;    //这样写程序会报错
-      let str = &quot;&apos;1&apos;&quot;;    //正确写法
-换行符：\n
-制表符：\t
-布尔类型（Boolean）值：true、false
-空（null）值：null
-undefined 值：undefined
-Symbol（唯一，搭配Object使用）
-</code></pre><p>2.复杂类型：对象类型<br>
-        
-          <a class="article-more-a" href="/2014/12/02/2/#more">more >></a>
-        
+        <!DOCTYPE html>
+<html lang="en">
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>柱状图</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <style>
+        .boes {}
+
+        .sexbox {
+            width: 300px;
+            height: 20px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sexbox>div {
+            height: 20px;
+        }
+
+        .sexbox>div:nth-of-type(1) {
+            background: red;
+        }
+
+        .sexbox>div:nth-of-type(2) {
+            background: deeppink;
+        }
+
+        #sexpicture {
+            width: 500px;
+            height: 200px;
+            border: 1px solid blue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #zhupicture {
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="boes">
+            <div id="sexpicture">
+
+                <div class="sexbox">
+                    <div :style="{'width':boywidth +'px'}"></div>
+                    <div :style="{'width':girlwidth +'px'}"></div>
+                </div>
+
+            </div>
+            <div id="zhupicture"></div>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        var vues = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    boywidth: 180,
+                    girlwidth: 120,
+                    zhuData: [70, 34, 60, 78, 69, 23, 154, 23, 42, 24],
+                    titlename: ['太原市民政局', 'nihao', 'shide', 'shuobu', '太原市运输局', '太原市残联', '太原市报社', '太原市司法局', '西安时光', 'zhengzhi'],
+                }
+            },
+            mounted() {
+                let _this = this;
+                _this.drawPicture();
+            },
+            created() {
+
+            },
+            methods: {
+                drawPicture() {
+                    let _this = this;
+                    let myChart = echarts.init(document.getElementById("zhupicture"));
+                    option = {
+                        backgroundColor: '#0e2147',
+                        xAxis: {
+                            show: false
+                        },
+                        yAxis: [{
+                            show: true,
+                            data: _this.titlename,
+                            inverse: true,
+                            axisLine: {
+                                show: false
+                            },
+                            splitLine: {
+                                show: false
+                            },
+                            axisTick: {
+                                show: false
+                            },
+                            axisLabel: {
+                                color: '#fff',
+                            },
+                        }],
+                        grid: {
+                            x: 100,
+                            y: 10,
+                            x2: 10,
+                            y2: 10,
+                            borderWidth: 1
+                        },
+                        series: [{
+                            name: '条',
+                            type: 'bar',
+                            yAxisIndex: 0,
+                            data: _this.zhuData,
+                            barWidth: 10,
+                            itemStyle: {
+                                normal: {
+                                    barBorderRadius: 10,
+                                    color: 'red'
+                                }
+                            },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'right',
+                                    formatter: '{c}',
+                                    color: '#fff',
+                                },
+                            },
+                        }]
+                    };
+                    myChart.setOption(option);
+
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
       
 
       
-    </p></div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/js//" class="article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/12/02/2/">展开全文 >></a>
-        </p>
       
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/html/zhuzhuangtu.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -264,248 +419,14 @@ Symbol（唯一，搭配Object使用）
 
 
 
-
   
-    <article id="post-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/12/02/1/">JS基本语法</a>
-    </h1>
   
 
-        
-        <a href="/2013/12/02/1/" class="archive-article-date">
-  	<time datetime="2013-12-02T07:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-12-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ESMAScript发展史<br>ESMAScript1(ES1)<strong>1997年<br>ESMAScript2(ES2)</strong>1998年<br>ESMAScript3(ES2)<strong>1999年<br>ESMAScript5(ES5)</strong>2009年<br>ESMAScript2015(ES6)<strong>2015年<br>ESMAScript2016(ES7)</strong>2016年<br>ESMAScript2017(ES8)__2017年</p>
-<p>JS基本语法：</p>
-<pre><code>单行注释：//
-多行注释：/**/
-标识符
-    1.严格区分大小写
-    2.由_、&amp;、数字、字母组成(不能以数字开头)
-    3.不能使用关键字和保留字
-
-命名
-    1.驼峰命名法（第二个单词首字母大写）：phoneNum
-    2.蛇形命名法（第一个单词和第二个单词之间用下划线隔开，且第二个单词首字母大写）：phone_Num
-
-变量:
-    含义：可变化的量
-    作用：储存数据的容量
-    变量声明初始化
-    var a = 100;    //ES5
-    let a = 100;    //ES6
-    变量声明未初始化
-    var a;
-    let a;
-    变量声明的问题：
-    1.变量重名
-    var a = 100;
-    var a = 10;    
-    //第二个声明会覆盖第一个声明，程序不会报错
-    let a = 10;
-    let a = 20;
-    //程序报错
-    2.遗留声明
-    console.log(a);//直接访问一个未声明的变量，程序会报错
-    a = 10;//对于未声明的变量赋值，会默认在全局创建该变量，程序不会报错
-</code></pre>
-        
-          <a class="article-more-a" href="/2013/12/02/1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag1</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2013/12/02/1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/12/02/hello-world/">JS基本语法</a>
-    </h1>
   
 
-        
-        <a href="/2013/12/02/hello-world/" class="archive-article-date">
-  	<time datetime="2013-12-02T07:30:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-12-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ESMAScript发展史<br>ESMAScript1(ES1)<strong>1997年<br>ESMAScript2(ES2)</strong>1998年<br>ESMAScript3(ES2)<strong>1999年<br>ESMAScript5(ES5)</strong>2009年<br>ESMAScript2015(ES6)<strong>2015年<br>ESMAScript2016(ES7)</strong>2016年<br>ESMAScript2017(ES8)__2017年</p>
-<p>JS基本语法：</p>
-<pre><code>单行注释：//
-多行注释：/**/
-标识符
-    1.严格区分大小写
-    2.由_、&amp;、数字、字母组成(不能以数字开头)
-    3.不能使用关键字和保留字
-
-命名
-    1.驼峰命名法（第二个单词首字母大写）：phoneNum
-    2.蛇形命名法（第一个单词和第二个单词之间用下划线隔开，且第二个单词首字母大写）：phone_Num
-
-变量:
-    含义：可变化的量
-    作用：储存数据的容量
-    变量声明初始化
-    var a = 100;    //ES5
-    let a = 100;    //ES6
-    变量声明未初始化
-    var a;
-    let a;
-    变量声明的问题：
-    1.变量重名
-    var a = 100;
-    var a = 10;    
-    //第二个声明会覆盖第一个声明，程序不会报错
-    let a = 10;
-    let a = 20;
-    //程序报错
-    2.遗留声明
-    console.log(a);//直接访问一个未声明的变量，程序会报错
-    a = 10;//对于未声明的变量赋值，会默认在全局创建该变量，程序不会报错
-</code></pre>
-        
-          <a class="article-more-a" href="/2013/12/02/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tag1</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/默认分类//" class="article-tag-list-link color5">默认分类</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2013/12/02/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -526,7 +447,7 @@ Symbol（唯一，搭配Object使用）
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
 		isTag: false,
